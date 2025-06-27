@@ -1,0 +1,36 @@
+{
+  "dxt_version": "0.1",
+  "name": "canvas-mcp-server",
+  "display_name": "Canvas (Instructure) MCP Server",
+  "version": "1.0.0",
+  "description": "MCP server for Canvas LMS integration",
+  "author": {
+    "name": "MB Crosier"
+  },
+  "screenshots": [
+    "images/due-dates.png",
+    "images/assignment-list.png"
+  ],
+  "server": {
+    "type": "node",
+    "entry_point": "dist/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/dist/index.js"
+      ],
+      "env": {}
+    }
+  },
+  "keywords": [
+    "canvas",
+    "instructure",
+    "lms",
+    "assignments"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mbcrosier/canvas-mcp"
+  }
+}
