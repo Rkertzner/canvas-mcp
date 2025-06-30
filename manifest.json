@@ -20,8 +20,8 @@
         "${__dirname}/dist/index.js"
       ],
       "env": {
-        "CANVAS_API_TOKEN": "",
-        "CANVAS_DOMAIN": ""
+        "CANVAS_API_TOKEN": "${user_config.canvas_api_token}",
+        "CANVAS_DOMAIN": "${user_config.canvas_domain}"
       }
     }
   },
@@ -49,5 +49,20 @@
       "name": "get_assignment",
       "description": "Retrieves detailed information about a specific assignment, including its description, submission requirements, and embedded links."
     }
-  ]
+  ],
+  "user_config": {
+    "canvas_api_token": {
+      "type": "string",
+      "title": "Canvas API Token",
+      "description": "Your Canvas API access token. You can generate this in your Canvas account settings.",
+      "sensitive": true,
+      "required": true
+    },
+    "canvas_domain": {
+      "type": "string",
+      "title": "Canvas Domain",
+      "description": "Your Canvas institution's domain, e.g., canvas.yourschool.edu",
+      "required": true
+    }
+  }
 }
