@@ -61,7 +61,7 @@
     "canvas_domain": {
       "type": "string",
       "title": "Canvas Domain",
-      "description": "Your Canvas institution's domain, e.g., canvas.yourschool.edu",
+      "description": "Your Canvas institution's domain, e.g., hbs.instructure.edu",
       "required": true
     }
   }
