@@ -337,6 +337,47 @@ server.tool(
   }
 );
 
+// List active courses tool (using dashboard API for better performance)
+server.tool(
+  "canvas_list_active_courses", 
+  "Lists only your active/current courses using the dashboard API. Much faster than list_courses.",
+  {},
+  async () => {
+    try {
+      const dashboardCards = await canvasApiRequest<any[]>(`/dashboard/dashboard_cards`);
+      
+      if (dashboardCards.length === 0) {
+        return {
+          content: [{ 
+            type: "text", 
+            text: "No active courses found in your dashboard." 
+          }]
+        };
+      }
+
+      const courseList = dashboardCards.map((card) => {
+        const termName = card.term ? `(${card.term})` : '';
+        return `- ID: ${card.id} | ${card.shortName} ${termName}`;
+      }).join('\n');
+
+      return {
+        content: [{ 
+          type: "text", 
+          text: `Your active courses:\n\n${courseList}` 
+        }]
+      };
+    } catch (error) {
+      return {
+        content: [{ 
+          type: "text", 
+          text: `Failed to fetch active courses: ${(error as Error).message}` 
+        }],
+        isError: true
+      };
+    }
+  }
+);
+
 // Extend course and assignment types for search results
 interface CourseWithAssignments extends CanvasCourse {
   assignments: CanvasAssignment[];
